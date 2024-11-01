@@ -1,6 +1,7 @@
 package com.tutorial.boot_demo.dao;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import static jakarta.persistence.GenerationType.IDENTITY;
 
@@ -8,12 +9,13 @@ import static jakarta.persistence.GenerationType.IDENTITY;
  * @author Siyuan
  * @date 2024/11/01/19:46
  */
-@Entity
+@Entity // 说明这是一个实体类和数据库表映射的类
 @Table(name="student")
+@Data // lombok依赖 自动生成getter和setter方法包括toString方法 也可以单独Getter Setter ToString注解
 public class Student {
 
     @Id // 自增主键通过数据库自动生成
-    @Column(name="id")
+    @Column(name="id") // java对象属性名和数据库表名一致可以省略
     @GeneratedValue(strategy = IDENTITY)
     private long id;
 
@@ -25,36 +27,4 @@ public class Student {
 
     @Column(name="age")
     private int age;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
 }
